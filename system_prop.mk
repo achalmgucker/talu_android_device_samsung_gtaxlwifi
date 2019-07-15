@@ -71,3 +71,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # FIFO UI scheduling
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.use_fifo_ui=1
+
+# Charger
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.charger.enable_suspend=true
