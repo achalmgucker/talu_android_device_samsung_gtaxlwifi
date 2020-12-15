@@ -287,7 +287,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.usb.config=adb \
     ro.adb.secure=0 \
-    ro.secure=0
+    service.adb.root=1
 
 # Offline charging
 PRODUCT_PACKAGES += \
