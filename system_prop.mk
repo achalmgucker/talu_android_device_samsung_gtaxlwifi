@@ -65,3 +65,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Do not update the recovery image
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.recovery_update=false
+
+# FIFO UI scheduling
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.use_fifo_ui=1
