@@ -204,6 +204,7 @@ on fs
 
 # GPS
 service gpsd /vendor/bin/hw/gpsd -c /vendor/etc/gps.xml
+    class hal
     user gps
     group system inet net_raw wakelock
     ioprio be 0
@@ -232,5 +233,4 @@ service start_hci_filter /vendor/bin/wcnss_filter
     disabled
 
 on property:sys.boot_completed=1
-    start gpsd
     swapon_all /vendor/etc/fstab.samsungexynos7870
