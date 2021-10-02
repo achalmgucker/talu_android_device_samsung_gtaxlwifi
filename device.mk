@@ -14,16 +14,11 @@
 # limitations under the License.
 #
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
 LOCAL_PATH := device/samsung/gtaxlwifi
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 PRODUCT_CHARACTERISTICS := tablet
-
-PRODUCT_PROPERTY_OVERRIDES := \
-    ro.carrier=wifi-only
 
 # Properties
 -include $(LOCAL_PATH)/system_prop.mk
@@ -59,8 +54,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
-    frameworks/native/data/etc/android.hardware.camera.full.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.full.xml \
-    frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.ethernet.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml \
@@ -173,8 +166,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     hostapd \
-    libqsap_sdk \
-    libQWiFiSoftApCfg \
     libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf \
@@ -189,14 +180,8 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.audio@2.0-impl \
     android.hardware.audio@2.0-service \
-    android.hardware.audio.effect@2.0-impl \
-    android.hardware.audio@5.0 \
     android.hardware.audio@5.0-impl \
-    android.hardware.audio.common@5.0 \
-    android.hardware.audio.common@5.0-util \
-    android.hardware.audio.effect@5.0 \
     android.hardware.audio.effect@5.0-impl \
     android.hardware.bluetooth.audio@2.0-impl \
     audio.a2dp.default \
@@ -230,7 +215,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
     $(LOCAL_PATH)/configs/media/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
 
-# Healthd
+# Health
 PRODUCT_PACKAGES += \
     android.hardware.health@2.0-impl \
     android.hardware.health@2.0-service
@@ -291,7 +276,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
 
-# ADB and USB configuration
+# USB and ADB configuration
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.usb.config=none \
     ro.adb.secure=1 \
@@ -299,17 +284,16 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Offline charging
 PRODUCT_PACKAGES += \
-    charger_res_images \
-    lineage_charger_res_images
+    charger_res_images
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
-# Call empty .mk files in the BSP sources as an existence check for them
+# Call empty .mk files present in the BSP sources to make sure they exist
 $(call inherit-product, hardware/samsung_slsi/exynos/empty.mk)
 $(call inherit-product, hardware/samsung_slsi/exynos5/empty.mk)
 $(call inherit-product, hardware/samsung_slsi/exynos7870/empty.mk)
 
-# call the proprietary setup
+# Call the proprietary setup
 $(call inherit-product, vendor/samsung/gtaxlwifi/gtaxlwifi-vendor.mk)

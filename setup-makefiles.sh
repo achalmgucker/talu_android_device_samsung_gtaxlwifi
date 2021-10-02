@@ -86,7 +86,7 @@ EOF
 
 (cat << EOF) >> $LINEAGE_ROOT/$OUTDIR/$DEVICE-vendor.mk
 
-# Create Mali links for Vulkan and OpenCL
+# Create Mali symlinks for OpenCL
 PRODUCT_PACKAGES += libGLES_mali
 EOF
 ###################################################################################################
